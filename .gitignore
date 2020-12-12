@@ -5,6 +5,16 @@
 *.so
 *.dylib
 
+# Development Directories
+tmp/
+
+# Env files
+*.env
+.env
+
+# Firebase authentication config
+firebase.json
+
 # Test binary, built with `go test -c`
 *.test
 
