@@ -1,11 +1,11 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"stona/auth"
 	"stona/tools"
+	"strconv"
 	"strings"
 
 	"github.com/joho/godotenv"
@@ -13,6 +13,7 @@ import (
 
 type firebaseConfig struct {
 	Type                string `json:"type"`
+	StorageBucket       string `json:"storage_bucket"`
 	ProjectID           string `json:"project_id"`
 	PrivateKeyID        string `json:"private_key_id"`
 	PrivateKey          string `json:"private_key"`
@@ -25,10 +26,11 @@ type firebaseConfig struct {
 }
 
 type ConfigStruct struct {
-	FirebaseConfig *firebaseConfig
-	Token          string
-	RootPath       string
-	StoragePath    string
+	FirebaseConfig   *firebaseConfig
+	Token            string
+	RootPath         string
+	StoragePath      string
+	ImgMaxResolution int
 }
 
 var config = new(ConfigStruct)
@@ -46,7 +48,6 @@ func (c *ConfigStruct) firebaseConfigLoad() {
 
 	for _, f := range fields {
 		d := os.Getenv(f)
-		fmt.Println(f, d)
 		if d == "" {
 			log.Fatalf("Config Error: %s field not found", f)
 			break
@@ -56,6 +57,7 @@ func (c *ConfigStruct) firebaseConfigLoad() {
 
 	c.FirebaseConfig = &firebaseConfig{
 		Type:                opt["FB_TYPE"],
+		StorageBucket:       opt["FB_STORAGE_BUCKET"],
 		ProjectID:           opt["FB_PROJECT_ID"],
 		PrivateKeyID:        opt["FB_PRIVATE_KEY_ID"],
 		PrivateKey:          opt["FB_PRIVATE_KEY"],
@@ -80,28 +82,36 @@ func GetPort() string {
 	return port
 }
 
+func GetEnv(key string, def string) string {
+	d := os.Getenv(key)
+	if d == "" {
+		d = def
+	}
+	return d
+}
+
 func init() {
 	if err := godotenv.Load(".env"); err != nil {
 		log.Fatalln(err)
 	}
 
-	rootPath := os.Getenv("ROOT_PATH")
-	storagePath := os.Getenv("STORAGE_PATH")
+	maxResEnv := GetEnv("IMG_MAX_RESOLUTION", "2048")
+	if maxRes, err := strconv.Atoi(maxResEnv); err != nil {
+		log.Fatalln("Config Validation Error: 'IMG_MAX_RESOLUTION' is not valid. Use ascii integer")
+	} else {
+		config.ImgMaxResolution = maxRes
+	}
+
+	config.RootPath = GetEnv("ROOT_PATH", "/")
+	config.StoragePath = GetEnv("STORAGE_PATH", "/")
 	token := os.Getenv("TOKEN")
 
-	if rootPath == "" {
-		rootPath = "/"
-	}
-	if storagePath == "" {
-		storagePath = "/"
-	}
 	if token == "" {
-		key := os.Getenv("KEY")
-		if key == "" {
-			key = tools.RandomKey(64)
-		}
+		key := GetEnv("KEY", tools.RandomKey(64))
 		token = auth.Service().GenerateToken(key)
 	}
+
+	config.Token = token
 
 	switch os.Getenv("TYPE") {
 	case "firebase":
@@ -113,5 +123,4 @@ func init() {
 			log.Fatalln("Config Error: Storage type not found")
 		}
 	}
-
 }
