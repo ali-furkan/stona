@@ -5,6 +5,7 @@ import (
 	"os"
 	"stona/auth"
 	"stona/tools"
+	"stona/tools/logger"
 	"strconv"
 	"strings"
 
@@ -112,6 +113,7 @@ func init() {
 	}
 
 	config.Token = token
+	auth.Service().SetToken(token)
 
 	switch os.Getenv("TYPE") {
 	case "firebase":
@@ -123,4 +125,8 @@ func init() {
 			log.Fatalln("Config Error: Storage type not found")
 		}
 	}
+
+	logger.Debug("Config", "Your Configuration Loaded")
+
+	logger.Log("Authentication", "Access Token: "+token)
 }

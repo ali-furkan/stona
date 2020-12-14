@@ -8,7 +8,7 @@ require (
 	github.com/chai2010/webp v1.1.0
 	github.com/cosmtrek/air v1.21.2 // indirect
 	github.com/creack/pty v1.1.11 // indirect
-	github.com/fatih/color v1.10.0 // indirect
+	github.com/fatih/color v1.10.0
 	github.com/gofiber/fiber v1.14.6
 	github.com/gofiber/fiber/v2 v2.2.5
 	github.com/google/uuid v1.1.2
