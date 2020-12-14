@@ -4,7 +4,7 @@ watch:
 	@air
 
 start:
-	@go run alifurkan.co/storage
+	@go run stona
 
 build:
 	@go build -o main .
