@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 	"stona/auth"
 	"stona/tools"
@@ -50,7 +49,7 @@ func (c *ConfigStruct) firebaseConfigLoad() {
 	for _, f := range fields {
 		d := os.Getenv(f)
 		if d == "" {
-			log.Fatalf("Config Error: %s field not found", f)
+			logger.Error("Config", f+" field not found")
 			break
 		}
 		opt[f] = d
@@ -92,13 +91,15 @@ func GetEnv(key string, def string) string {
 }
 
 func init() {
+	logger.Debug("Config", "Parsing your configuration")
+
 	if err := godotenv.Load(".env"); err != nil {
-		log.Fatalln(err)
+		logger.Error("Config", err.Error())
 	}
 
 	maxResEnv := GetEnv("IMG_MAX_RESOLUTION", "2048")
 	if maxRes, err := strconv.Atoi(maxResEnv); err != nil {
-		log.Fatalln("Config Validation Error: 'IMG_MAX_RESOLUTION' is not valid. Use ascii integer")
+		logger.Error("Config Validation", "'IMG_MAX_RESOLUTION' is not valid. Use ascii integer")
 	} else {
 		config.ImgMaxResolution = maxRes
 	}
@@ -118,11 +119,13 @@ func init() {
 	switch os.Getenv("TYPE") {
 	case "firebase":
 		{
+			logger.Debug("Config", "Storage is set to firebase")
 			config.firebaseConfigLoad()
+			break
 		}
 	default:
 		{
-			log.Fatalln("Config Error: Storage type not found")
+			logger.Error("Config", "Storage type not found")
 		}
 	}
 

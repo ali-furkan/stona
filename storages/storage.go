@@ -13,7 +13,7 @@ func NewStorage(path string, mode string) *StorageModule {
 		Type: mode,
 	}
 
-	logger.Debug("Storage", "( path: "+path+" ) '"+mode+"' Storage Created")
+	logger.Debug("Storage", "{ path: "+path+" } '"+mode+"' Storage Created")
 
 	return storage
 }
