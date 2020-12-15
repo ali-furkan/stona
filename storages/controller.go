@@ -13,7 +13,7 @@ func (m *StorageModule) Init(router fiber.Router) {
 	sRouter := router.Group(m.Path)
 	sRouter.Get("/:path/:id", Service().GetAsset)
 
-	sRouter.Get("/:path", Service().GetList)
+	sRouter.Get("/:path", auth.Service().AuthMiddleware, Service().GetList)
 
 	sRouter.Put("/:path/:id", auth.Service().AuthMiddleware, Service().Upload)
 	sRouter.Put("/:path", auth.Service().AuthMiddleware, Service().Upload)
