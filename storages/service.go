@@ -96,7 +96,7 @@ func (s *StorageService) GetList(c *fiber.Ctx) error {
 
 	for i := 0; ; i++ {
 		attrs, err := it.Next()
-		if err == iterator.Done || size == i+1 {
+		if err == iterator.Done || size == i {
 			break
 		}
 
