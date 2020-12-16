@@ -109,7 +109,7 @@ func (s *StorageService) GetList(c *fiber.Ctx) error {
 		}
 
 		files = append(files, fiber.Map{
-			"url":       c.BaseURL() + config.Config().RootPath + "/" + attrs.Name,
+			"url":       c.BaseURL() + config.Config().RootPath + attrs.Name,
 			"type":      attrs.ContentType,
 			"size":      attrs.Size,
 			"createdAt": attrs.Created,
