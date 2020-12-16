@@ -1,4 +1,6 @@
-# Stona
+![stona-banner](./assets/stona-banner-alt.png)
+
+# Stona Storage
 
 Stona is an API service that serves your files
 
