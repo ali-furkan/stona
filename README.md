@@ -40,7 +40,24 @@ Stona has two way for installation. You can install it by follow the steps below
 
 ## API
 
-The core usage is as follows
+### Reference
+
+#### Base URL
+
+You can change Base Path of Stona API with `ROOT_PATH` field of env as example 
+**Example Base URL**
+```
+    https://your-awesome-domain/ROOT_PATH
+```
+
+#### Authentication
+
+Authentication is performed with the `Authorization` HTTP header in the format `Authorization Bearer YOUR_ACCESS_TOKEN`
+
+**Example Authorization Header**
+```
+    Authorization: Bearer QUs97eBB7an8q3AEFg8qSPRguq524cgKHzvs
+```
 
 ### Get the file
 
