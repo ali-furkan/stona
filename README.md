@@ -43,6 +43,7 @@ Stona has two way for installation. You can install it by follow the steps below
 ### Base URL
 
 You can change Base Path of Stona API with `ROOT_PATH` field of env as example 
+
 **Example Base URL**
 ```
     https://your-awesome-domain/ROOT_PATH
