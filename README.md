@@ -38,11 +38,9 @@ Stona has two way for installation. You can install it by follow the steps below
         - Build the application `make`
         - Start the generated binary file. For example `"./main"`
 
-## API
+## API Reference
 
-### Reference
-
-#### Base URL
+### Base URL
 
 You can change Base Path of Stona API with `ROOT_PATH` field of env as example 
 **Example Base URL**
@@ -50,7 +48,7 @@ You can change Base Path of Stona API with `ROOT_PATH` field of env as example
     https://your-awesome-domain/ROOT_PATH
 ```
 
-#### Authentication
+### Authentication
 
 Authentication is performed with the `Authorization` HTTP header in the format `Authorization Bearer YOUR_ACCESS_TOKEN`
 
