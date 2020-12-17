@@ -4,7 +4,7 @@
 
 Stona is an API service that serves your files
 
-## Usage
+## 📦 Installation
 
 Stona has two way for installation. You can install it by follow the steps below when you decided installation.
 
@@ -37,6 +37,77 @@ Stona has two way for installation. You can install it by follow the steps below
     - To start as production mode:
         - Build the application `make`
         - Start the generated binary file. For example `"./main"`
+
+## API
+
+The core usage is as follows
+
+### Get the file
+
+**GET** `/{bucket.folder}/{file.id}`
+
+Returns a file data for given `bucker.folder` and `file.id` 
+
+#### Query String Params
+
+| Name  | Type          | Description   | Required  | Default           |
+|-------|---------------|---------------|:---------:|-------------------|
+| size  | integer (px)  | image width   | false     | Orginally size    |
+
+### Get Current Bucket Folder Files
+
+**GET** `/{bucket.folder}`
+
+Returns a `bucket.folder` list of partial files. Requires the **authentication**.
+
+#### Query String Params
+
+| Name  | Type          | Description                               | Required  | Default   |
+|-------|---------------|-------------------------------------------|:---------:|-----------|
+| size  | integer       | max number of files to returns (1-100)    | false     | 10        |
+| begin | integer       | list's starting point                     | false     | 0         |
+
+#### Example Usage
+
+**Request:**
+
+```
+GET https://s.alifurkan.co/test-folder?size=1&begin=0 (with bearer token)
+```
+
+**Response:**
+
+```json
+[
+    {
+        "type": "image/png",
+        "url": "https://s.alifurkan.co/test-folder/85498988458459.png",
+        "size": 350545,
+        "createdAt": "2020-12-17T00:00:00.000Z" 
+    }
+]
+```
+
+### Put New File
+
+**PUT** `/{bucket.folder}`
+
+**Note:** `{image.id}` can add optional on path like `/{bucket.folder}/{image.id}`
+
+Returns url and metadata for given `{bucket.folder}`, if request finalized success. Requires the authentication.
+
+#### Form Data Params
+
+| Name  | Type          | Description       | Required  | Default   |
+|-------|---------------|-------------------|:---------:|-----------|
+| file  | file          | file to attach    | true      | none      |
+
+
+### Delete File
+
+**DELETE** `/{bucket.folder}/{file.id}`
+
+Returns deleted `{file.id}` metadata for given `{bucket.folder}` and `{file.id}`. Requires the authentication.
 
 ## License
 
