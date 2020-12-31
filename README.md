@@ -8,10 +8,11 @@ Stona is an API service that serves your files
 
 Stona has two way for installation. You can install it by follow the steps below when you decided installation.
 
-- [Locally](###StandardInstallation)
+- [Development](#installation--development-)
+- [Locally](#installation--locally-)
 - Docker ( No stable yet )
 
-### Installation ( Locally )
+### Installation ( Development )
 
 - First of all, check your machine has golang, If it hasn't it you can find it [here](https://golang.org/)
 
@@ -37,6 +38,14 @@ Stona has two way for installation. You can install it by follow the steps below
     - To start as production mode:
         - Build the application `make`
         - Start the generated binary file. For example `"./main"`
+
+### Installation ( Locally )
+
+- Download latest builded application in [release](./releases)
+
+- Downloads your [**Service account key**](https://console.cloud.google.com/apis/credentials/serviceaccountkey) as JSON and fill the env (like a [env.example](./env.example))
+
+- Start the application with terminal. `./stona`
 
 ## API Reference
 
