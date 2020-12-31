@@ -5,6 +5,7 @@ import (
 	"strings"
 	"time"
 
+	"stona/auth"
 	"stona/config"
 	"stona/storages"
 
@@ -44,9 +45,11 @@ func main() {
 		Format: strings.Join(format, " "),
 	}))
 
-	storageRouter := app.Group(config.Config().RootPath)
+	mainRouter := app.Group(config.Config().RootPath)
 
-	storage.Init(storageRouter)
+	auth.Init(mainRouter)
+
+	storage.Init(mainRouter)
 
 	PORT := config.GetPort()
 
