@@ -15,7 +15,12 @@ jobs:
       - name: Build
         uses: cedrickring/golang-action@1.6.0
         with: 
-          args: make build
+          args: go build -o release/stona .
+      - name: Prepare Release
+        run: |
+          cp ./README.md ./release/
+          cp ./env.example ./release/.env
+          zip -r release.zip release
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -28,4 +33,15 @@ jobs:
             New Release ( ${{ github.ref }} )
           draft: false
           prerelease: false
+      - name: Upload App Assets
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.zip
+          asset_name: release-${{ github.ref }}.zip
+          asset_content_type: application/zip
+            
       
