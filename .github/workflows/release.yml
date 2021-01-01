@@ -18,9 +18,9 @@ jobs:
           args: go build -o release/stona .
       - name: Prepare Release
         run: |
-          cp ./README.md ./release/
-          cp ./env.example ./release/.env
-          zip -r release.zip release
+          sudo cp ./README.md ./release/
+          sudo cp ./env.example ./release/.env
+          sudo zip -r release.zip release
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
