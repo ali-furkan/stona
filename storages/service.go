@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
-	"stona/config"
-	"stona/images"
-	"stona/tools/messages"
+	"github.com/ali-furkqn/stona/config"
+	"github.com/ali-furkqn/stona/images"
+	"github.com/ali-furkqn/stona/tools/messages"
 	"strconv"
 	"strings"
 

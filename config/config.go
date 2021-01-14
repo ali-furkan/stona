@@ -2,9 +2,9 @@ package config
 
 import (
 	"os"
-	"stona/auth"
-	"stona/tools"
-	"stona/tools/logger"
+	"github.com/ali-furkqn/stona/auth"
+	"github.com/ali-furkqn/stona/tools"
+	"github.com/ali-furkqn/stona/tools/logger"
 	"strconv"
 	"strings"
 

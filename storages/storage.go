@@ -1,6 +1,6 @@
 package storages
 
-import "stona/tools/logger"
+import "github.com/ali-furkqn/stona/tools/logger"
 
 type StorageModule struct {
 	Path string

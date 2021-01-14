@@ -9,7 +9,7 @@ import (
 	"image/jpeg"
 	"image/png"
 	"io"
-	"stona/config"
+	"github.com/ali-furkqn/stona/config"
 
 	"github.com/chai2010/webp"
 	"github.com/nfnt/resize"

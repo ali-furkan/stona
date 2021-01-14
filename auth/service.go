@@ -3,7 +3,7 @@ package auth
 import (
 	"encoding/base64"
 	"log"
-	"stona/tools/messages"
+	"github.com/ali-furkqn/stona/tools/messages"
 
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"

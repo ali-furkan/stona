@@ -1,4 +1,4 @@
-module stona
+module github.com/ali-furkqn/stona
 
 go 1.15
 

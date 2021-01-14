@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"stona/tools/logger"
+	"github.com/ali-furkqn/stona/tools/logger"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -21,7 +21,6 @@ func Init(router fiber.Router) {
 	aRouter.Post("/verify", Service().AuthMiddleware, func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"message": "Successfully Verified",
-			"role":    "admin",
 		})
 	})
 

@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"stona/auth"
-	"stona/config"
-	"stona/storages"
+	"github.com/ali-furkqn/stona/auth"
+	"github.com/ali-furkqn/stona/config"
+	"github.com/ali-furkqn/stona/storages"
 
 	"github.com/fatih/color"
 	"github.com/gofiber/fiber/v2"

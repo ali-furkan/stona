@@ -1,8 +1,8 @@
 package storages
 
 import (
-	"stona/auth"
-	"stona/tools/logger"
+	"github.com/ali-furkqn/stona/auth"
+	"github.com/ali-furkqn/stona/tools/logger"
 
 	"github.com/gofiber/fiber/v2"
 )
