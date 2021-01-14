@@ -1,8 +1,9 @@
 package auth
 
 import (
-	"github.com/ali-furkqn/stona/tools/logger"
 	"time"
+
+	"github.com/ali-furkqn/stona/tools/logger"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
