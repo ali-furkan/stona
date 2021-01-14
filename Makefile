@@ -7,7 +7,7 @@ start:
 	@go run stona
 
 build:
-	@go build -o main .
+	@go build -o stona .
 
 install:
 	@go mod download
