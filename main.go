@@ -25,7 +25,7 @@ func init() {
 	// In the future multiple storages can
 	// be created with configuration
 
-	storage = storages.NewStorage(config.Config().StoragePath, "firebase")
+	storage = storages.NewStorage(config.Config.StoragePath, "firebase")
 
 }
 
@@ -45,7 +45,7 @@ func main() {
 		Format: strings.Join(format, " "),
 	}))
 
-	mainRouter := app.Group(config.Config().RootPath)
+	mainRouter := app.Group(config.Config.RootPath)
 
 	auth.Init(mainRouter)
 

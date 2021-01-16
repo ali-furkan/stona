@@ -68,7 +68,7 @@ func Encode(src image.Image, t string) (buf bytes.Buffer, err error) {
 func ReSize(size uint, src io.Reader, t string) (buf bytes.Buffer, err error) {
 	var (
 		img    image.Image
-		maxRes = config.Config().ImgMaxResolution
+		maxRes = config.Config.ImgMaxResolution
 	)
 
 	if size > uint(maxRes) {

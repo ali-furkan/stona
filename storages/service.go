@@ -110,7 +110,7 @@ func (s *StorageService) GetList(c *fiber.Ctx) error {
 		}
 
 		files = append(files, fiber.Map{
-			"url":       c.BaseURL() + config.Config().RootPath + attrs.Name,
+			"url":       c.BaseURL() + config.Config.RootPath + attrs.Name,
 			"type":      attrs.ContentType,
 			"size":      attrs.Size,
 			"createdAt": attrs.Created,
@@ -158,8 +158,8 @@ func (s *StorageService) Upload(c *fiber.Ctx) error {
 			return messages.ErrorMessage(c, fiber.StatusInternalServerError, err.Error())
 		}
 		size := m.Bounds().Size()
-		if size.X > config.Config().ImgMaxResolution || size.Y > config.Config().ImgMaxResolution {
-			return messages.ErrorMessage(c, fiber.StatusBadRequest, fmt.Sprintf("Image Resolution must be smaller than %d px", config.Config().ImgMaxResolution))
+		if size.X > config.Config.ImgMaxResolution || size.Y > config.Config.ImgMaxResolution {
+			return messages.ErrorMessage(c, fiber.StatusBadRequest, fmt.Sprintf("Image Resolution must be smaller than %d px", config.Config.ImgMaxResolution))
 		}
 		buf, err = images.Encode(m, strings.Split(t, "/")[1])
 		if err != nil {
@@ -206,13 +206,13 @@ func (s *StorageService) Upload(c *fiber.Ctx) error {
 func init() {
 	var err error
 
-	fireabseCfg, err := json.Marshal(config.Config().FirebaseConfig)
+	fireabseCfg, err := json.Marshal(config.Config.FirebaseConfig)
 
 	storageClient, err = storage.NewClient(ctx, option.WithCredentialsJSON(fireabseCfg))
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	bucket = storageClient.Bucket(config.Config().FirebaseConfig.StorageBucket)
+	bucket = storageClient.Bucket(config.Config.FirebaseConfig.StorageBucket)
 
 	att, err = bucket.Attrs(ctx)
 	if err != nil {

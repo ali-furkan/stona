@@ -20,11 +20,7 @@ type ConfigStruct struct {
 	ImgMaxResolution int
 }
 
-var config = new(ConfigStruct)
-
-func Config() *ConfigStruct {
-	return config
-}
+var Config = new(ConfigStruct)
 
 func GetPort() string {
 	port := os.Getenv("PORT")
@@ -57,11 +53,11 @@ func init() {
 	if maxRes, err := strconv.Atoi(maxResEnv); err != nil {
 		logger.Error("Config Validation", "'IMG_MAX_RESOLUTION' is not valid. Use ascii integer")
 	} else {
-		config.ImgMaxResolution = maxRes
+		Config.ImgMaxResolution = maxRes
 	}
 
-	config.RootPath = GetEnv("ROOT_PATH", "/")
-	config.StoragePath = GetEnv("STORAGE_PATH", "/")
+	Config.RootPath = GetEnv("ROOT_PATH", "/")
+	Config.StoragePath = GetEnv("STORAGE_PATH", "/")
 	token := os.Getenv("TOKEN")
 
 	if token == "" {
@@ -69,14 +65,14 @@ func init() {
 		token = auth.Service().GenerateToken(key)
 	}
 
-	config.Token = token
+	Config.Token = token
 	auth.Service().SetToken(token)
 
 	switch os.Getenv("TYPE") {
 	case "firebase":
 		{
 			logger.Debug("Config", "Storage is set to firebase")
-			config.firebaseConfigLoad()
+			Config.firebaseConfigLoad()
 			break
 		}
 	default:
