@@ -6,15 +6,15 @@ Stona is an API service that serves your files
 
 ## 📦 Installation
 
-Stona has two way for installation. You can install it by follow the steps below when you decided installation.
+Stona has two way for installation. You can install it by follow the steps below when you decide to install.
 
 - [Development](#installation--development-)
 - [Locally](#installation--locally-)
-- Docker ( No stable yet )
+- Docker ( Not stable yet )
 
 ### Installation ( Development )
 
-- First of all, check your machine has golang, If it hasn't it you can find it [here](https://golang.org/)
+- First of all, check your machine whether it has golang, If it doesn't,you can find it [here](https://golang.org/)
 
 - Clone this repository with git 
 
