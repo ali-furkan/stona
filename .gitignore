@@ -7,6 +7,7 @@
 
 # Development Directories
 tmp/
+bin/
 
 # Env files
 *.env
