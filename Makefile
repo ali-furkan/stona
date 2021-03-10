@@ -20,9 +20,8 @@ release:
 	@GOOS=linux GOARCH=arm $(GO) build -o bin/linux/stona-arm
 	@GOOS=linux GOARCH=arm64 $(GO) build -o bin/linux/stona-arm64
 	@echo [Stona Release] - Building for windows
-	@GOOS=windows GOARCH=amd64 $(GO) build -o bin/windows/stona-amd64.exe
-	@GOOS=windows GOARCH=arm $(GO) build -o bin/windows/stona-arm.exe
-	@GOOS=windows GOARCH=arm64 $(GO) build -o bin/windows/stona-arm64.exe
+	@GOOS=windows GOARCH=amd64 $(GO) build -o bin/win/stona-amd64.exe
+	@GOOS=windows GOARCH=arm $(GO) build -o bin/win/stona-arm.exe
 
 # NOTE: Add test
 
