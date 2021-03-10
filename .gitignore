@@ -11,9 +11,7 @@ tmp/
 # Env files
 *.env
 .env
-
-# Firebase authentication config
-firebase.json
+.env.test
 
 # Test binary, built with `go test -c`
 *.test
