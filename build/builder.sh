@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set echo off
+set -eu
 
 mkdir releases
 
@@ -12,6 +12,7 @@ Release() {
 
     sudo cp -f ./README.md ./release/README.md
     sudo cp -f ./bin/$1 ./release/bin/$2
+
     cd release
     sudo zip -r ../$2.zip ./
     cd ..
@@ -37,6 +38,7 @@ Release win/stona-amd64.exe stona_win_amd64
 
 Release win/stona-arm.exe stona_win_arm
 
+# Pack all built packages & Removes bin folder
 sudo zip -r ./stona_all_platforms.zip ./bin
 
 sudo rm -fr bin
