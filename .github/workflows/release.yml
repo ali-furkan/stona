@@ -12,36 +12,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
-        uses: cedrickring/golang-action@1.6.0
-        with: 
-          args: go build -o release/stona .
-      - name: Prepare Release
-        run: |
-          sudo cp ./README.md ./release/
-          sudo cp ./env.example ./release/.env
-          sudo zip -r release.zip release
+      - name: Prepare Releases
+        run: sudo bash ./build/builder.sh
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            New Release ( ${{ github.ref }} )
-          draft: false
-          prerelease: false
-      - name: Upload App Assets
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release.zip
-          asset_name: release-${{ github.ref }}.zip
-          asset_content_type: application/zip
+          files: |
+            stona_all_platforms.zip
+            stona_darwin_amd64.zip
+            stona_linux_amd64.zip
+            stona_linux_arm64.zip
+            stona_linux_arm.zip
+            stona_win_amd64.zip
+            stona_win_arm.zip
+
             
       
