@@ -10,4 +10,4 @@ I will inform how does it when basic logicals jobs completed
 
 ## License
 
-Stona is [MIT licensed](LICENSE)
+Stona licensed under the [MIT license](LICENSE)
